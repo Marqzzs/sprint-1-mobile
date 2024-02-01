@@ -27,6 +27,7 @@ export default function App() {
     data={peopleList}
     keyExtractor={(item) => item.id}
 
+    // leitura da lista
     renderItem={({item}) => (
       //exigir cada item da lista
       <Person name={item.name} age={item.age} />
