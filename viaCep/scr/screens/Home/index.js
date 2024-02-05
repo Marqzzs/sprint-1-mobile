@@ -19,47 +19,18 @@ export function Home() {
     // chamada da API
     async function fetchCep() {
       try {
-        if (cep !== "" && cep.length <= 8) {
-          const endereco = await axios.get(
-            `https://viacep.com.br/ws/${cep}/json/`
-          );
-          setLogradouro(endereco.data.logradouro);
-          setBairro(endereco.data.bairro);
-          setCidade(endereco.data.localidade);
+        if (cep && cep.length <= 8) {
+          const enderecoUrl = `https://viacep.com.br/ws/${cep}/json/`;
+          const enderecoResponse = (await axios.get(enderecoUrl)).data;
 
-          // Mapeamento de siglas de UF para nomes completos
-          const ufToStateName = {
-            AC: "Acre",
-            AL: "Alagoas",
-            AP: "Amapá",
-            AM: "Amazonas",
-            BA: "Bahia",
-            CE: "Ceará",
-            DF: "Distrito Federal",
-            ES: "Espírito Santo",
-            GO: "Goiás",
-            MA: "Maranhão",
-            MT: "Mato Grosso",
-            MS: "Mato Grosso do Sul",
-            MG: "Minas Gerais",
-            PA: "Pará",
-            PB: "Paraíba",
-            PR: "Paraná",
-            PE: "Pernambuco",
-            PI: "Piauí",
-            RJ: "Rio de Janeiro",
-            RN: "Rio Grande do Norte",
-            RS: "Rio Grande do Sul",
-            RO: "Rondônia",
-            RR: "Roraima",
-            SC: "Santa Catarina",
-            SP: "São Paulo",
-            SE: "Sergipe",
-            TO: "Tocantins",
-          };
-          // Dentro do seu useEffect, ao setar o estado, você pode usar o mapeamento
-          setEstado(ufToStateName[endereco.data.uf]);
-          setUf(endereco.data.uf);
+          const estadoUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${enderecoResponse.uf}`;
+          const estadoResponse = (await axios.get(estadoUrl)).data;
+
+          setLogradouro(enderecoResponse.logradouro);
+          setBairro(enderecoResponse.bairro);
+          setCidade(enderecoResponse.localidade);
+          setEstado(estadoResponse.nome);
+          setUf(enderecoResponse.uf);
         }
       } catch (error) {
         console.log("Erro ao buscar o CEP");
