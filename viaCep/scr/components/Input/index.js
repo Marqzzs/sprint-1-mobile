@@ -1,15 +1,14 @@
 import { InputText } from "./style"
 
-export function Input({placeholder, editable, fieldvalue, onChangeText, KeyType, maxLenght}) {
+export function Input({placeholder, editable, fieldValue, onChangeText, keyboardType, maxLength}) {
     return(
         <InputText 
             placeholder={placeholder}
             editable={editable}
-            keyBoardType={KeyType}
-            maxLenght={maxLenght}
-            value={fieldvalue}
+            keyboardType={keyboardType} 
+            maxLength={maxLength} 
+            value={fieldValue} 
             onChangeText={onChangeText}
         />
-        
     )
 }

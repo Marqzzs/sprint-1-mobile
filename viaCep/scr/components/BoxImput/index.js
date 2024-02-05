@@ -8,9 +8,9 @@ export const BoxImput = ({
     textLabel,
     placeholder,
     fieldValue = null,
-    onchangeText = null,
+    onChangeText = null,
     KeyType = 'default',
-    maxLength
+    maxLength,
 }) => {
     return(
         <FieldContent fieldWidth={fieldWidth}>
@@ -21,9 +21,10 @@ export const BoxImput = ({
                 placeholder={placeholder}
                 editable={editable}
                 KeyType={KeyType}
-                maxLength={maxLength}
+                maxLength={maxLength} 
+                // {/* Aqui está a correção */}
                 fieldValue={fieldValue}
-                onchangeText={onchangeText}
+                onChangeText={onChangeText}
             />
 
         </FieldContent>
