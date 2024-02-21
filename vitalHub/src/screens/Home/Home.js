@@ -7,6 +7,7 @@ import { Header } from "../../components/Header/Header";
 import { FilterAppointment } from "./Style";
 import { ListComponent } from "../../components/List/List";
 import { AppointmentCard } from "../../components/AppointmentCard/AppointmentCard";
+import CancellationModal from "../../components/CancellationModal/CancellationModal";
 
 const Consultas = [
   { id: 1, nome: "Carlos", situacao: "pendente" },
@@ -19,6 +20,9 @@ const Consultas = [
 
 export const Home = () => {
   const [statusLista, setStatusLista] = useState("pendente");
+  // states para os modais
+  const [showModalCancel, setShowModalCancel] = useState(false);
+  const [showModalAppointment, setShowModalAppointment] = useState(false);
 
   return (
     <Container>
@@ -29,17 +33,17 @@ export const Home = () => {
       {/* Buttons(Filtros) */}
       <FilterAppointment>
         <AbsListAppontment
-          textButton={"Agendadas"}
+          textButton={"Scheduled"}
           clickButton={statusLista === "pendente"}
           onPress={() => setStatusLista("pendente")}
         />
         <AbsListAppontment
-          textButton={"Realizadas"}
+          textButton={"Realized"}
           clickButton={statusLista === "realizada"}
           onPress={() => setStatusLista("realizada")}
         />
         <AbsListAppontment
-          textButton={"Canceladas"}
+          textButton={"Canceled"}
           clickButton={statusLista === "cancelada"}
           onPress={() => setStatusLista("cancelada")}
         />
@@ -50,10 +54,15 @@ export const Home = () => {
         key={(item) => item.id}
         renderItem={({ item }) =>
           statusLista == item.situacao && (
-            <AppointmentCard situacao={item.situacao} />
+            <AppointmentCard
+              situacao={item.situacao}
+              onPressAppointment={() => setShowModalAppointment(true)}
+              onPressCancel={() => setShowModalCancel(true)}
+            />
           )
         }
       />
+      <CancellationModal visible={showModalCancel} setShowModalCancel={setShowModalCancel}/>
     </Container>
   );
 };

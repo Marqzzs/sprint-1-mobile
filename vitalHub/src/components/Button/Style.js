@@ -33,3 +33,13 @@ color: #496BBA;
 export const ButtonResetPassword = styled(Button)`
 margin: 15px 0px;
 `
+
+export const ButtonSecundary = styled(Button)`
+background-color: transparent;
+border: none;
+`
+export const ButtonSecundaryTitle = styled(ButtonTitle)`
+text-transform: capitalize;
+text-decoration: underline;
+color: #344F8F;
+`

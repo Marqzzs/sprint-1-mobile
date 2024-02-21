@@ -30,7 +30,7 @@ export const AppointmentCard = ({
           <DataProfileCard>
             <ProfileName>Joao</ProfileName>
             <ProfileData>
-              <TextAge>45 anos</TextAge>
+              <TextAge>45 years</TextAge>
               <TextBold>Rotina</TextBold>
             </ProfileData>
           </DataProfileCard>
@@ -52,11 +52,11 @@ export const AppointmentCard = ({
               <></>
             ) : situacao == "pendente" ? (
               <ButtonCard onPress={onPressCancel}>
-                <ButtonText situacao={situacao}>Cancelar</ButtonText>
+                <ButtonText situacao={situacao}>Cancel</ButtonText>
               </ButtonCard>
             ) : (
               <ButtonCard onPress={onPressAppointment}>
-                <ButtonText situacao={situacao}>Ver Prontuario</ButtonText>
+                <ButtonText situacao={situacao}>View medical records</ButtonText>
               </ButtonCard>
             )}
           </ViewRow>
