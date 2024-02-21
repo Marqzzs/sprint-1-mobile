@@ -27,6 +27,7 @@ import {
 import {
   Quicksand_500Medium,
   Quicksand_600SemiBold,
+  Quicksand_400Regular
 } from "@expo-google-fonts/quicksand";
 import { CheckEmail } from "./src/screens/CheckEmail/CheckEmail";
 import { CreateAccount } from "./src/screens/CreateAccount/CreateAccount";
@@ -34,45 +35,6 @@ import { Profile } from "./src/screens/Profile/Profile";
 import { Home } from "./src/screens/Home/Home";
 
 export default function App() {
-  // const CalendarList = () => {
-  //   moment.updateLocale("pt-br", {
-  //     //months
-  //     months:
-  //       "January_February_March_April_May_June_July_August_September_October_November_December".split(
-  //         "_"
-  //       ),
-
-  //     //abreviate months
-  //     monthsShort: "jan_feb_mar_apr_may_jun_jul_aug_sep_oct_nov_dec".split("_"),
-
-  //     //days of week
-  //     weekdays:
-  //       "sunday_monday_tuesday_wednesday_thursday_friday_saturday".split("_"),
-
-  //     //abreviate days
-  //     weekdaysShort: "sun_mon_tue_wed_thu_fri_sat".split("_"),
-
-  //     weekdaysMin: "sun_2ª_3ª_4ª_5ª_6ª_sat".split("_"),
-  //   });
-  // };
-
-  // //current snapshote date
-
-  // const currentDate = new Date();
-
-  // //set the start date to the first day of the month
-  // const startingDate = new Date(
-  //   currentDate.getFullYear(),
-  //   currentDate.getMonth(),
-  //   1
-  // );
-
-  // //set the end date to the last day of the month
-  // const endingDate = new Date(
-  //   currentDate.getFullYear(),
-  //   currentDate.getMonth() + 1,
-  //   0
-  // );
 
   const [fontsLoaded, fontsError] = useFonts({
     MontserratAlternates_600SemiBold,
@@ -80,6 +42,7 @@ export default function App() {
     MontserratAlternates_700Bold,
     Quicksand_500Medium,
     Quicksand_600SemiBold,
+    Quicksand_400Regular,
   });
 
   if (!fontsLoaded && !fontsError) {

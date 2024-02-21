@@ -1,6 +1,7 @@
 import { Button, ButtonTitle } from "../../components/Button/Style";
 import { Container, ScrollContainer } from "../../components/Container/Style";
 import {
+  AddresRow,
   ContentName,
   ContentProfile,
   ContentProfileRow,
@@ -37,17 +38,17 @@ export const Profile = () => {
           <InputProfile placeholder={"Rua Vincenso Silva, 987"} />
         </ContentProfile>
         {/*  */}
-        <ContentProfileRow>
-          <ContentProfile>
+        <AddresRow>
+          <ContentProfileRow>
             <TextProfileInput>CEP</TextProfileInput>
-            <InputProfileRow placeholder={"06548-909"} />
-          </ContentProfile>
-          {/*  */}
-          <ContentProfile>
+            <InputProfileRow placeholder={"06582-444"} />
+          </ContentProfileRow>
+          
+          <ContentProfileRow>
             <TextProfileInput>City</TextProfileInput>
             <InputProfileRow placeholder={"Moema-SP"} />
-          </ContentProfile>
-        </ContentProfileRow>
+          </ContentProfileRow>
+        </AddresRow>
 
         <Button>
           <ButtonTitle>Save</ButtonTitle>

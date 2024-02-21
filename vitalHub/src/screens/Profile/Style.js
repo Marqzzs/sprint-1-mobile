@@ -55,11 +55,16 @@ background-color: #F5F3F3;
 
 export const InputProfileRow = styled(InputProfile)`
 width: 144px;
+margin: 0px;
 `
 
-export const ContentProfileRow = styled.View`
-  width: 80%;
-  height: auto;
-  flex-direction: row;
-  gap: 30px; /* Espaçamento horizontal entre os itens */
-`;
+export const AddresRow = styled.View`
+width: 75%;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+`
+
+export const ContentProfileRow = styled(ContentProfile)`
+margin: 0px 0px 0px;
+`

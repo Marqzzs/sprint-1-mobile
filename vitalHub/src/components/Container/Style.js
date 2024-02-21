@@ -21,5 +21,9 @@ export const ContainerHeader = styled(LinearGradient).attrs({
     width: 100%;
     height: 144px;
     border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px
+    border-bottom-right-radius: 15px;
+    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 `

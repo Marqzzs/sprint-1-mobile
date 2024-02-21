@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const BoxUser = styled.View`
     flex-direction: row;
     align-items: center;
+    gap: 10px;
+    margin-left: 20px;
 `
 
 export const ImageUser = styled.Image`

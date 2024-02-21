@@ -1,75 +1,98 @@
-import React from "react";
-import { View } from "react-native";
-import CalendarStrip from "react-native-calendar-strip";
-import moment from "moment"; // Certifique-se de instalar moment no seu projeto
-import styled from "styled-components/native";
-
-// Estilizando o componente CalendarStrip com styled-components
-const StyledCalendarStrip = styled(CalendarStrip)`
-  height: 100px;
-  width: 100%;
-`;
+import React from 'react';
+import moment from 'moment';
+import { StyleSheet } from 'react-native';
+import { StyledCalendarStrip } from '../../screens/Home/Style';
 
 const CalendarHome = () => {
-  // Atualizando a localização para português brasileiro
-  moment.updateLocale("pt-br", {
-    months:
-      "Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro".split(
-        "_"
-      ),
-    weekdays: "Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado".split("_"),
-    weekdaysShort: "Dom_Seg_Ter_Qua_Qui_Sex_Sáb".split("_"),
-    weekdaysMin: "D_S_T_Q_Q_S_S".split("_"),
+  // Atualização das configurações de localização do momento
+  moment.updateLocale('pt-br', {
+    months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+    monthsShort: 'jan_fev_mar_abr_mai_jun_jul_ago_set_out_nov_dez'.split('_'),
+    weekdays: 'domingo_segunda-feira_terça-feira_quarta-feira_quinta-feira_sexta-feira_sábado'.split('_'),
+    weekdaysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
+    weekdaysMin: 'dom_2ª_3ª_4ª_5ª_6ª_sáb'.split('_'),
   });
 
-  // Obtendo datas de início e fim do mês atual
-  const currentDate = moment();
-  const startingDate = currentDate.startOf("month");
-  const endingDate = currentDate.endOf("month");
+  // Instância da data atual
+  const currentDate = new Date();
+
+  // Define a data inicial como sendo o primeiro dia do mês
+  const startingDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+
+  // Define a data final como sendo o último dia do mês
+  const endingDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
 
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <StyledCalendarStrip
-        calendarAnimation={{ type: "sequence", duration: 30 }}
-        daySelectionAnimation={{
-          type: "border",
-          duration: 200,
-          borderWidth: 2,
-          borderHighlightColor: "#49B3BA",
-        }}
-        iconLeftStyle={{ display: "none" }}
-        iconRightStyle={{ display: "none" }}
-        selectedDate={currentDate.toDate()}
-        startingDate={startingDate.toDate()}
-        minDate={startingDate.toDate()}
-        maxDate={endingDate.toDate()}
-        calendarHeaderStyle={{
-          fontSize: 22,
-          textAlign: "center",
-          alignSelf: "flex-start",
-          color: "#4E4B59",
-          fontFamily: "MontserratAlternates_600SemiBold",
-          paddingHorizontal: 16,
-        }}
-        dateNumberStyle={{ color: "#5F5C6B", fontSize: 16 }}
-        dateNameStyle={{
-          color: "#ACABB7",
-          fontSize: 12,
-          textTransform: "capitalize",
-        }}
-        highlightDateNameStyle={{
-          color: "white",
-          fontSize: 12,
-          fontWeight: "bold",
-          textTransform: "capitalize",
-        }}
-        highlightDateNumberStyle={{ color: "white", fontSize: 16 }}
-        highlightDateContainerStyle={{ backgroundColor: "#60BFC5" }}
-        iconContainer={{ flex: 0.01 }}
-        scrollable={true}
-      />
-    </View>
+    <StyledCalendarStrip
+      // Animação e seleção de cada data
+      calendarAnimation={{ type: 'sequence', duration: 30 }}
+      daySelectionAnimation={styles.selectedAnimationStyle}
+      // Seta esquerda e direita para avançar e voltar (aqui como display none)
+      iconLeftStyle={styles.iconsStyle}
+      iconRightStyle={styles.iconsStyle}
+      // Deixa uma marcação default - data atual
+      selectedDate={currentDate}
+      // Dia que começamos a visualizar a barra
+      startingDate={moment()}
+      // Data min e max - início do mês e final do mês
+      minDate={startingDate}
+      maxDate={endingDate}
+      // Estilização dos itens que não estão selecionados
+      calendarHeaderStyle={styles.calendarHeaderStyle}
+      dateNumberStyle={styles.numberDateStyle}
+      dateNameStyle={styles.nameDateStyle}
+      // Estilização do item que está selecionado - efeito do item marcado
+      highlightDateNameStyle={styles.selectedDateNameStyle}
+      highlightDateNumberStyle={styles.selectedDateNumberStyle}
+      highlightDateContainerStyle={styles.selectedContainerStyle}
+      // Tamanho do container
+      iconContainer={{ flex: 0.1 }}
+      // Scroll da barra
+      scrollable={true}
+    />
   );
 };
+
+const styles = StyleSheet.create({
+  iconsStyle: {
+    display: 'none',
+  },
+  calendarHeaderStyle: {
+    fontSize: 22,
+    textAlign: 'center',
+    alignSelf: 'flex-start',
+    color: '#4E4B59',
+    fontFamily: 'MontserratAlternates_600SemiBold',
+    paddingHorizontal: 16,
+  },
+  nameDateStyle: {
+    color: '#ACABB7',
+    fontSize: 12,
+    textTransform: 'capitalize',
+  },
+  numberDateStyle: {
+    color: '#5F5C6B',
+    fontSize: 16,
+  },
+  selectedDateNameStyle: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: 'bold',
+    textTransform: 'capitalize',
+  },
+  selectedDateNumberStyle: {
+    color: 'white',
+    fontSize: 14,
+  },
+  selectedContainerStyle: {
+    backgroundColor: `#60BFC5`,
+  },
+  selectedAnimationStyle: {
+    type: 'border',
+    duration: 200,
+    borderWidth: 2,
+    borderHighlightColor: '#49B3BA',
+  },
+});
 
 export default CalendarHome;
