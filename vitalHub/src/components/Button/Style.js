@@ -43,3 +43,8 @@ text-transform: capitalize;
 text-decoration: underline;
 color: #344F8F;
 `
+
+export const ButtonModal = styled(Button)`
+width: 80%;
+margin-top: 42px;
+`

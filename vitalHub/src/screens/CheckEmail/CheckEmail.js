@@ -11,12 +11,15 @@ import {
   TextEmail,
 } from "../../components/Links/Style";
 import { ContentCheck } from "./Style";
-import { SubText } from "../RecoverPassword/Style";
+import { ContentIconSetinha, SubText } from "../RecoverPassword/Style";
 import { Button, ButtonTitle } from "../../components/Button/Style";
 
 export const CheckEmail = () => {
   return (
     <Container>
+      <ContentIconSetinha>
+        <AntDesign name="leftcircle" size={24} color="#49B3BA" />
+      </ContentIconSetinha>
       <Logo source={require("../../assets/logoVitalHub.png")} />
       <Title>Check your e-mail</Title>
       <ContentCheck>

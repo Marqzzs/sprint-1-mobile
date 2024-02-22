@@ -48,20 +48,21 @@ export const AppointmentCard = ({
             </ClockCard>
 
             {/* valida e mostra o tipo de botao conforme a situacao */}
-            {situacao == "cancelado" ? (
-              <></>
-            ) : situacao == "pendente" ? (
+            {situacao == "pendente" ? (
               <ButtonCard onPress={onPressCancel}>
                 <ButtonText situacao={situacao}>Cancel</ButtonText>
               </ButtonCard>
-            ) : (
+            ) : situacao == "realizada" ? (
               <ButtonCard onPress={onPressAppointment}>
-                <ButtonText situacao={situacao}>View medical records</ButtonText>
+                <ButtonText situacao={situacao}>
+                  View medical records
+                </ButtonText>
               </ButtonCard>
-            )}
+            ) : null /* Aqui você não renderiza nada quando a situação é "cancelada" */ }
           </ViewRow>
         </ContentCard>
       </ContainerCardList>
     </>
+      
   );
 };

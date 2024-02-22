@@ -11,3 +11,8 @@ width: 80%;
 flex-wrap: wrap;
 margin: 15px 0px 5px 0px;
 `
+export const ContentIconSetinha = styled.View`
+position: absolute;
+top: 10%;
+left: 10%;
+`

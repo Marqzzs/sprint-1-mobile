@@ -9,11 +9,14 @@ import { Button, ButtonTitle } from "../../components/Button/Style";
 export const ResetPassword = () => {
   return (
     <Container>
+      <ContentIconSetinha>
+        <AntDesign name="leftcircle" size={24} color="#49B3BA" />
+      </ContentIconSetinha>
       <Logo source={require("../../assets/logoVitalHub.png")} />
       <Title>Reset Password</Title>
       <SubText>Insert and confirm your new password</SubText>
-      <Input placeholder={"New Password"}/>
-      <RecoverInput placeholder={"Confirm new password"}/>
+      <Input placeholder={"New Password"} />
+      <RecoverInput placeholder={"Confirm new password"} />
       <Button>
         <ButtonTitle>Confirm new password</ButtonTitle>
       </Button>

@@ -60,7 +60,7 @@ export default function App() {
           //component that will be called
           component={Navigation}
           //screen title
-          options={{ title: "Navigation" }}
+          options={{ title: "Navigation", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -68,7 +68,7 @@ export default function App() {
           //component that will be called
           component={Login}
           //screen title
-          options={{ title: "Login" }}
+          options={{ title: "Login", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -76,7 +76,7 @@ export default function App() {
           //component that will be called
           component={RecoverPassword}
           //screen title
-          options={{ title: "RecoverPassword" }}
+          options={{ title: "RecoverPassword", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -84,7 +84,7 @@ export default function App() {
           //component that will be called
           component={CheckEmail}
           //screen title
-          options={{ title: "CheckEmail" }}
+          options={{ title: "CheckEmail", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -92,7 +92,7 @@ export default function App() {
           //component that will be called
           component={ResetPassword}
           //screen title
-          options={{ title: "ResetPassword" }}
+          options={{ title: "ResetPassword", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -100,7 +100,7 @@ export default function App() {
           //component that will be called
           component={CreateAccount}
           //screen title
-          options={{ title: "CreateAccount" }}
+          options={{ title: "CreateAccount", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -108,7 +108,7 @@ export default function App() {
           //component that will be called
           component={Profile}
           //screen title
-          options={{ title: "Profile" }}
+          options={{ title: "Profile", headerShown: false }}
         />
         <Stack.Screen
           //Screen name
@@ -116,7 +116,7 @@ export default function App() {
           //component that will be called
           component={Home}
           //screen title
-          options={{ title: "Home" }}
+          options={{ title: "Home", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

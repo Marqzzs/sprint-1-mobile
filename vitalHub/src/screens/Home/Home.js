@@ -2,12 +2,12 @@ import { useState } from "react";
 import { AbsListAppontment } from "../../components/AbsListAppointment/AbsListAppointment";
 import CalendarHome from "../../components/CalendarHome/CalendarHome";
 import { Container } from "../../components/Container/Style";
-import { FilterButtons } from "../../components/FilterButtons/FilterButtons";
 import { Header } from "../../components/Header/Header";
 import { FilterAppointment } from "./Style";
 import { ListComponent } from "../../components/List/List";
 import { AppointmentCard } from "../../components/AppointmentCard/AppointmentCard";
 import CancellationModal from "../../components/CancellationModal/CancellationModal";
+import { AppointmentModal } from "../../components/AppointmentModal/AppointmentModal";
 
 const Consultas = [
   { id: 1, nome: "Carlos", situacao: "pendente" },
@@ -62,7 +62,14 @@ export const Home = () => {
           )
         }
       />
-      <CancellationModal visible={showModalCancel} setShowModalCancel={setShowModalCancel}/>
+      <CancellationModal
+        visible={showModalCancel}
+        setShowModalCancel={setShowModalCancel}
+      />
+      <AppointmentModal
+        visible={showModalAppointment}
+        setShowModalAppointment={setShowModalAppointment}
+      />
     </Container>
   );
 };
