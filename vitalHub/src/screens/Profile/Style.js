@@ -32,12 +32,15 @@ export const TextProfileEmail = styled.Text`
 `;
 
 export const ContentProfile = styled.View`
-  width: 320px;
-  height: 83px;
+  width: 90%;
+  height: auto;
   flex-direction: column;
-  align-items: flex-start;
   margin-bottom: 24px;
 `;
+
+export const RowContentProfile = styled(ContentProfile)`
+width: 47.5%;
+`
 
 export const TextProfileInput = styled.Text`
   font-size: 16px;
@@ -51,29 +54,29 @@ export const InputProfile = styled(Input)`
   font-family: "MontserratAlternates_500Medium";
   border: none;
   background-color: #f5f3f3;
+  width: 100%;
 `;
 
 export const ContentRow = styled.View`
-width: 80%;
-flex-direction: row;
-margin-bottom: 30px;
-justify-content: space-between;
+  width: 90%;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
 `;
 
 export const ContentProfileRow = styled.View`
-gap: 6px;
 `;
+
 export const InputRow = styled.TextInput.attrs({
   placeholderTextColor: "#49B3BA",
 })`
-  width: 144px;
+  width: 100%; /* Defina a largura dos inputs para 48% para cobrir 90% com margens */
   height: 53px;
   padding: 16px;
-
-  /* border: 2px solid #49b3ba; */
   border-radius: 5px;
   color: #33303e;
   background-color: #f5f3f3;
   font-size: 16px;
   font-family: "MontserratAlternates_600SemiBold";
+
 `;

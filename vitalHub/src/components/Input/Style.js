@@ -18,3 +18,14 @@ export const Input = styled.TextInput.attrs({
 export const RecoverInput = styled(Input)`
 margin-bottom: 30px;
 `
+
+export const InputRecord = styled(Input)`
+height: 121px;
+color: #33303E;
+text-align-vertical: top;
+width: 100%; 
+`
+
+export const InputMedicalRecords = styled(InputRecord)`
+height: 53px;
+`

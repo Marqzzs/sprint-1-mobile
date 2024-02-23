@@ -5,6 +5,8 @@ import { MiniLink } from "../../components/Links/Style";
 import { Logo } from "../../components/Logo/Style";
 import { Title } from "../../components/Title/Style";
 import { ContentIconSetinha, SubText } from "../RecoverPassword/Style";
+import { AntDesign } from "@expo/vector-icons";
+
 
 export const CreateAccount = () => {
   return (

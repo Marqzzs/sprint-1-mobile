@@ -9,6 +9,7 @@ import {
   InputProfile,
   InputRow,
   ProfilePicture,
+  RowContentProfile,
   TextProfileEmail,
   TextProfileInput,
   TextProfileName,
@@ -40,15 +41,15 @@ export const Profile = () => {
         </ContentProfile>
         {/*  */}
         <ContentRow>
-          <ContentProfileRow>
+          <RowContentProfile>
             <TextProfileInput>CEP:</TextProfileInput>
             <InputRow placeholder={"05545-333"}/>
-          </ContentProfileRow>
+          </RowContentProfile>
           {/*  */}
-          <ContentProfileRow>
+          <RowContentProfile>
             <TextProfileInput>City:</TextProfileInput>
             <InputRow placeholder={"Capao Redondo - SP"}/>
-          </ContentProfileRow>
+          </RowContentProfile>
         </ContentRow>
 
         <Button>

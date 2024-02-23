@@ -6,6 +6,7 @@ import { Navigation } from "./src/screens/Navigation/Navigation";
 import { Login } from "./src/screens/Login/Login";
 import { RecoverPassword } from "./src/screens/RecoverPassword/RecoverPassword";
 import { ResetPassword } from "./src/screens/ResetPassword/ResetPassword";
+import {MedicalRecords} from "./src/screens/MedicalRecords/MedicalRecords"
 
 // Import library moment
 import moment from "moment";
@@ -117,6 +118,14 @@ export default function App() {
           component={Home}
           //screen title
           options={{ title: "Home", headerShown: false }}
+        />
+        <Stack.Screen
+          //Screen name
+          name="MedicalRecords"
+          //component that will be called
+          component={MedicalRecords}
+          //screen title
+          options={{ title: "MedicalRecords", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

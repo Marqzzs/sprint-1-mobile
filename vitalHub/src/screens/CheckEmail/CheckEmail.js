@@ -13,6 +13,8 @@ import {
 import { ContentCheck } from "./Style";
 import { ContentIconSetinha, SubText } from "../RecoverPassword/Style";
 import { Button, ButtonTitle } from "../../components/Button/Style";
+import { AntDesign } from "@expo/vector-icons";
+
 
 export const CheckEmail = () => {
   return (

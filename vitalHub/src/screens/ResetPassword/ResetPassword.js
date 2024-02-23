@@ -2,9 +2,11 @@ import { Text } from "react-native";
 import { Logo } from "../../components/Logo/Style";
 import { Title } from "../../components/Title/Style";
 import { Container } from "../../components/Container/Style";
-import { SubText } from "../RecoverPassword/Style";
+import { ContentIconSetinha, SubText } from "../RecoverPassword/Style";
 import { Input, RecoverInput } from "../../components/Input/Style";
 import { Button, ButtonTitle } from "../../components/Button/Style";
+import { AntDesign } from "@expo/vector-icons";
+
 
 export const ResetPassword = () => {
   return (
