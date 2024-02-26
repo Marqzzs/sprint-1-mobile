@@ -8,6 +8,9 @@ import { ListComponent } from "../../components/List/List";
 import { AppointmentCard } from "../../components/AppointmentCard/AppointmentCard";
 import CancellationModal from "../../components/CancellationModal/CancellationModal";
 import { AppointmentModal } from "../../components/AppointmentModal/AppointmentModal";
+import { FontAwesome } from "@expo/vector-icons";
+import { ScheduleButton } from "../../components/ScheduleButton/ScheduleButton";
+import { ScheduleModal } from "../../components/ScheduleModal/ScheduleModal";
 
 const Consultas = [
   { id: 1, nome: "Carlos", situacao: "pendente" },
@@ -22,6 +25,7 @@ export const Home = ({ userType = "paciente" }) => {
   const [statusLista, setStatusLista] = useState("pendente");
   const [showModalCancel, setShowModalCancel] = useState(false);
   const [showModalAppointment, setShowModalAppointment] = useState(false);
+  const [showModalSchedule, setShowModalSchedule] = useState(false);
 
   return (
     <Container>
@@ -77,6 +81,49 @@ export const Home = ({ userType = "paciente" }) => {
       {userType === "paciente" && (
         <>
           <CalendarHome />
+          <FilterAppointment>
+            <AbsListAppontment
+              textButton={"Scheduled"}
+              clickButton={statusLista === "pendente"}
+              onPress={() => setStatusLista("pendente")}
+            />
+            <AbsListAppontment
+              textButton={"Realized"}
+              clickButton={statusLista === "realizada"}
+              onPress={() => setStatusLista("realizada")}
+            />
+            <AbsListAppontment
+              textButton={"Canceled"}
+              clickButton={statusLista === "cancelada"}
+              onPress={() => setStatusLista("cancelada")}
+            />
+          </FilterAppointment>
+          <ListComponent
+            data={Consultas}
+            key={(item) => item.id}
+            renderItem={({ item }) =>
+              statusLista === item.situacao && (
+                <AppointmentCard
+                  situacao={item.situacao}
+                  onPressAppointment={() => setShowModalAppointment(true)}
+                  onPressCancel={() => setShowModalCancel(true)}
+                />
+              )
+            }
+          />
+          <CancellationModal
+            visible={showModalCancel}
+            setShowModalCancel={setShowModalCancel}
+          />
+          <AppointmentModal
+            visible={showModalAppointment}
+            setShowModalAppointment={setShowModalAppointment}
+          />
+          <ScheduleModal
+            visible={showModalSchedule}
+            setShowModalSchedule={setShowModalSchedule}
+          />
+          <ScheduleButton onPress={() => setShowModalSchedule(true)} />
         </>
       )}
     </Container>

@@ -6,7 +6,7 @@ import { Navigation } from "./src/screens/Navigation/Navigation";
 import { Login } from "./src/screens/Login/Login";
 import { RecoverPassword } from "./src/screens/RecoverPassword/RecoverPassword";
 import { ResetPassword } from "./src/screens/ResetPassword/ResetPassword";
-import {MedicalRecords} from "./src/screens/MedicalRecords/MedicalRecords"
+import { MedicalRecords } from "./src/screens/MedicalRecords/MedicalRecords";
 
 // Import library moment
 import moment from "moment";
@@ -28,7 +28,7 @@ import {
 import {
   Quicksand_500Medium,
   Quicksand_600SemiBold,
-  Quicksand_400Regular
+  Quicksand_400Regular,
 } from "@expo-google-fonts/quicksand";
 import { CheckEmail } from "./src/screens/CheckEmail/CheckEmail";
 import { CreateAccount } from "./src/screens/CreateAccount/CreateAccount";
@@ -36,7 +36,6 @@ import { Profile } from "./src/screens/Profile/Profile";
 import { Home } from "./src/screens/Home/Home";
 
 export default function App() {
-
   const [fontsLoaded, fontsError] = useFonts({
     MontserratAlternates_600SemiBold,
     MontserratAlternates_500Medium,
@@ -53,6 +52,7 @@ export default function App() {
   return (
     //involves the structure of navigation
     <NavigationContainer>
+      <StatusBar />
       {/* Navigation component */}
       <Stack.Navigator>
         <Stack.Screen
