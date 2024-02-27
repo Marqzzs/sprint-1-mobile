@@ -34,6 +34,8 @@ import { CheckEmail } from "./src/screens/CheckEmail/CheckEmail";
 import { CreateAccount } from "./src/screens/CreateAccount/CreateAccount";
 import { Profile } from "./src/screens/Profile/Profile";
 import { Home } from "./src/screens/Home/Home";
+import { SelectClinic } from "./src/screens/SelectClinic/SelectClinic";
+import { SelectDoctor } from "./src/screens/SelectDoctor/SelectDoctor";
 
 export default function App() {
   const [fontsLoaded, fontsError] = useFonts({
@@ -126,6 +128,22 @@ export default function App() {
           component={MedicalRecords}
           //screen title
           options={{ title: "MedicalRecords", headerShown: false }}
+        />
+        <Stack.Screen
+          //Screen name
+          name="SelectClinic"
+          //component that will be called
+          component={SelectClinic}
+          //screen title
+          options={{ title: "SelectClinic", headerShown: false }}
+        />
+        <Stack.Screen
+          //Screen name
+          name="SelectDoctor"
+          //component that will be called
+          component={SelectDoctor}
+          //screen title
+          options={{ title: "SelectDoctor", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

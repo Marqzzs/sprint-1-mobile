@@ -6,11 +6,11 @@ export const ContainerCardList = styled.View`
     flex-direction: row;
     gap: 10px;
     background-color: #FFFFFF;
-    margin-bottom: 12px;
     padding: 10px 10px;
     border-radius: 5px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.08);
     margin: 0 auto;
+    margin-bottom: 12px;
 `
 export const ProfileImage = styled.Image`
     width: 77px;

@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { Title } from "../Title/Style";
+import { TextProfileInput } from "../../screens/Profile/Style";
+import { Input } from "../Input/Style";
 
 export const AgendModal = styled.View`
   flex: 1;
@@ -16,3 +19,11 @@ export const ContentSModal = styled.View`
   background-color: #fff;
   align-items: center;
 `;
+
+export const TextProfileInputModal = styled(TextProfileInput)`
+margin-top: 20px;
+`
+export const InputModal = styled(Input)`
+width: 100%;
+margin-bottom: 230px;
+`

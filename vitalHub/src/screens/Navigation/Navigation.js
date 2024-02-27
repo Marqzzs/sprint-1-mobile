@@ -11,6 +11,8 @@ export const Navigation = ({ navigation }) => {
       <Button title="Profile" onPress={() => navigation.navigate("Profile")} />
       <Button title="Home" onPress={() => navigation.navigate("Home")} />
       <Button title="MedicalRecords" onPress={() => navigation.navigate("MedicalRecords")} />
+      <Button title="SelectClinic" onPress={() => navigation.navigate("SelectClinic")} />
+      <Button title="SelectDoctor" onPress={() => navigation.navigate("SelectDoctor")} />
     </View>
   );
 };
