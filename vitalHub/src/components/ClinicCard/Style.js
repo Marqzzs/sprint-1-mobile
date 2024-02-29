@@ -8,6 +8,9 @@ flex-direction: column;
 gap: 10px;
 justify-content: center;
 `
+export const ContentNameDoctorCard = styled(ContentNameClinicCard)`
+width: 100%;
+`
 
 export const TitleCard = styled(Title)`
 font-size: 16px;

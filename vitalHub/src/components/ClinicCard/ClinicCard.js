@@ -1,5 +1,4 @@
 import {
-  ClockCard,
   ContainerCardList,
   TextBold,
 } from "../AppointmentCard/Style";
@@ -15,13 +14,13 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export const ClinicCard = ({nome}) => {
+export const ClinicCard = ({ name, address }) => {
   return (
     <>
       <ContainerCardList>
         <ContentNameClinicCard>
-        <TitleCard>{nome}</TitleCard>
-          <TextBold>Sao Paulo - SP</TextBold>
+          <TitleCard>{name}</TitleCard>
+          <TextBold>{address}</TextBold>
         </ContentNameClinicCard>
         <ContentInformationCard>
           <ContentStar>

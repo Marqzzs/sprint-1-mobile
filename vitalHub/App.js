@@ -36,6 +36,7 @@ import { Profile } from "./src/screens/Profile/Profile";
 import { Home } from "./src/screens/Home/Home";
 import { SelectClinic } from "./src/screens/SelectClinic/SelectClinic";
 import { SelectDoctor } from "./src/screens/SelectDoctor/SelectDoctor";
+import { SelectDate } from "./src/screens/SelectDate/SelectDate";
 
 export default function App() {
   const [fontsLoaded, fontsError] = useFonts({
@@ -144,6 +145,14 @@ export default function App() {
           component={SelectDoctor}
           //screen title
           options={{ title: "SelectDoctor", headerShown: false }}
+        />
+        <Stack.Screen
+          //Screen name
+          name="SelectDate"
+          //component that will be called
+          component={SelectDate}
+          //screen title
+          options={{ title: "SelectDate", headerShown: false }}
         />
       </Stack.Navigator>
     </NavigationContainer>

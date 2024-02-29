@@ -9,21 +9,22 @@ import {
   ButtonSecundaryTitle,
   ButtonTitle,
 } from "../../components/Button/Style";
+import { TouchableOpacity } from "react-native";
 
 const Clinicas = [
-  { id: 1, nome: "Clinic Nature" },
-  { id: 2, nome: "Clinic of Woman" },
-  { id: 3, nome: "Carlos" },
-  { id: 4, nome: "Carlos" },
-  { id: 5, nome: "Carlos" },
-  { id: 6, nome: "Carlos" },
+  { id: 1, name: "Clinic Nature", address: "Jerumenha - PI" },
+  { id: 2, name: "Clinic of Woman", address: "Januaria - MG" },
+  { id: 3, name: "Hospital São Lucas", address: "Lagoinha - MT" },
+  { id: 4, name: "Centro Médico Vitalidade", address: "Rio Branco - AC" },
+  { id: 5, name: "Clínica Saúde e Vida", address: "Seabra - BA" },
+  { id: 6, name: "Clínica Integrada Harmonia", address: "Se - SP" },
 ];
 
 export const SelectClinic = () => {
   const [statusLista, setStatusLista] = useState(""); // Inicialmente vazio
 
-  const handleClinicSelection = (nome) => {
-    setStatusLista(nome); // Atualiza o estado com o nome da clínica selecionada
+  const handleClinicSelection = (name) => {
+    setStatusLista(name); // Atualiza o estado com o name da clínica selecionada
   };
 
   return (
@@ -33,7 +34,11 @@ export const SelectClinic = () => {
       <ListComponent
         data={Clinicas}
         keyExtractor={(item) => item.id.toString()} // Corrigindo a propriedade keyExtractor
-        renderItem={({ item }) => <ClinicCard nome={item.nome} />}
+        renderItem={({ item }) => (
+          <TouchableOpacity>
+            <ClinicCard name={item.name} address={item.address}/>
+          </TouchableOpacity>
+        )}
       />
       <Button>
         <ButtonTitle>Continue</ButtonTitle>
