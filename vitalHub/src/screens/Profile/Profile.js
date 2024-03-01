@@ -43,17 +43,25 @@ export const Profile = () => {
         <ContentRow>
           <RowContentProfile>
             <TextProfileInput>CEP:</TextProfileInput>
-            <InputRow placeholder={"05545-333"}/>
+            <InputRow placeholder={"05545-333"} />
           </RowContentProfile>
           {/*  */}
           <RowContentProfile>
             <TextProfileInput>City:</TextProfileInput>
-            <InputRow placeholder={"Capao Redondo - SP"}/>
+            <InputRow placeholder={"Capao Redondo - SP"} />
           </RowContentProfile>
         </ContentRow>
 
         <Button>
           <ButtonTitle>Save</ButtonTitle>
+        </Button>
+
+        <Button>
+          <ButtonTitle>Edit</ButtonTitle>
+        </Button>
+
+        <Button disabled={true}>
+          <ButtonTitle>Exit the app</ButtonTitle>
         </Button>
       </Container>
     </ScrollContainer>

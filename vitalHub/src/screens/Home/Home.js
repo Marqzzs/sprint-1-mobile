@@ -11,6 +11,8 @@ import { AppointmentModal } from "../../components/AppointmentModal/AppointmentM
 import { FontAwesome } from "@expo/vector-icons";
 import { ScheduleButton } from "../../components/ScheduleButton/ScheduleButton";
 import { ScheduleModal } from "../../components/ScheduleModal/ScheduleModal";
+import { TouchableOpacity } from "react-native";
+import { LocationModal } from "../../components/LocationModal/LocationModal";
 
 const Consultas = [
   { id: 1, nome: "Carlos", situacao: "pendente" },
@@ -26,6 +28,8 @@ export const Home = ({ userType = "paciente" }) => {
   const [showModalCancel, setShowModalCancel] = useState(false);
   const [showModalAppointment, setShowModalAppointment] = useState(false);
   const [showModalSchedule, setShowModalSchedule] = useState(false);
+  const [showModalLocationAppointment, setShowModalLocationAppointment] =
+    useState(false);
 
   return (
     <Container>
@@ -103,11 +107,15 @@ export const Home = ({ userType = "paciente" }) => {
             key={(item) => item.id}
             renderItem={({ item }) =>
               statusLista === item.situacao && (
-                <AppointmentCard
-                  situacao={item.situacao}
-                  onPressAppointment={() => setShowModalAppointment(true)}
-                  onPressCancel={() => setShowModalCancel(true)}
-                />
+                <TouchableOpacity
+                  onPress={() => setShowModalLocationAppointment(true)}
+                >
+                  <AppointmentCard
+                    situacao={item.situacao}
+                    onPressAppointment={() => setShowModalAppointment(true)}
+                    onPressCancel={() => setShowModalCancel(true)}
+                  />
+                </TouchableOpacity>
               )
             }
           />
@@ -122,6 +130,10 @@ export const Home = ({ userType = "paciente" }) => {
           <ScheduleModal
             visible={showModalSchedule}
             setShowModalSchedule={setShowModalSchedule}
+          />
+          <LocationModal
+            visible={showModalLocationAppointment}
+            setShowModalLocationAppointment={setShowModalLocationAppointment} // Correção do nome da função
           />
           <ScheduleButton onPress={() => setShowModalSchedule(true)} />
         </>

@@ -3,11 +3,18 @@ import { Container } from "../../components/Container/Style";
 import { TitleSelection } from "../SelectClinic/Style";
 import { FullCalendar } from "../../components/FullCalendar/FullCalendar";
 import { SelectInput } from "../../components/SelectInput/SelectInput";
-import { Button, ButtonSecundaryTitle, ButtonTitle } from "../../components/Button/Style";
+import {
+  Button,
+  ButtonSecundaryTitle,
+  ButtonTitle,
+} from "../../components/Button/Style";
+import { ConfirmModal } from "../../components/ConfirmModal/ConfirmModal";
 
 export const SelectDate = () => {
   const [selectedDate, setSelectedDate] = useState();
   const [selectedTime, setSelectedTime] = useState();
+  const [showModalConfirm, setShowModalConfirm] = useState(false);
+
   return (
     <Container>
       <TitleSelection>Select Date</TitleSelection>
@@ -23,11 +30,17 @@ export const SelectDate = () => {
         handleSelectedFn={setSelectedTime}
       />
 
-      <Button>
-        <ButtonTitle>Comfirm</ButtonTitle>
+      <Button onPress={() => setShowModalConfirm(true)}>
+        <ButtonTitle onPress={() => setShowModalConfirm(true)}>
+          Confirm
+        </ButtonTitle>
       </Button>
       <ButtonSecundaryTitle>Cancel</ButtonSecundaryTitle>
 
+      <ConfirmModal
+        visible={showModalConfirm}
+        setShowModalConfirm={setShowModalConfirm}
+      />
     </Container>
   );
 };
