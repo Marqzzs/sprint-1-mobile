@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { Container, ScrollContainer } from "../../components/Container/Style";
+// SelectClinic.js
+import React, { useState } from "react";
+import { Container } from "../../components/Container/Style";
 import { ListComponent } from "../../components/List/List";
-import { Title } from "../../components/Title/Style";
-import { ClinicCard } from "../../components/ClinicCard/ClinicCard";
 import { TitleSelection } from "./Style";
 import {
   Button,
@@ -10,6 +9,7 @@ import {
   ButtonTitle,
 } from "../../components/Button/Style";
 import { TouchableOpacity } from "react-native";
+import { ClinicCard } from "../../components/ClinicCard/ClinicCard";
 
 const Clinicas = [
   { id: 1, name: "Clinic Nature", address: "Jerumenha - PI" },
@@ -21,10 +21,10 @@ const Clinicas = [
 ];
 
 export const SelectClinic = () => {
-  const [statusLista, setStatusLista] = useState(""); // Inicialmente vazio
+  const [selectedClinic, setSelectedClinic] = useState("");
 
   const handleClinicSelection = (name) => {
-    setStatusLista(name); // Atualiza o estado com o name da clínica selecionada
+    setSelectedClinic(name);
   };
 
   return (
@@ -33,10 +33,15 @@ export const SelectClinic = () => {
 
       <ListComponent
         data={Clinicas}
-        keyExtractor={(item) => item.id.toString()} // Corrigindo a propriedade keyExtractor
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <TouchableOpacity>
-            <ClinicCard name={item.name} address={item.address}/>
+          <TouchableOpacity onPress={() => handleClinicSelection(item.id)}>
+            <ClinicCard
+              name={item.name}
+              address={item.address}
+              selected={item.id === selectedClinic}
+              onPress={() => handleClinicSelection(item.id)}
+            />
           </TouchableOpacity>
         )}
       />

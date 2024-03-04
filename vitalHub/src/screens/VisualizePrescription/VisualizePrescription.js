@@ -4,6 +4,7 @@ import { InputMedicalRecords, InputRecord } from "../../components/Input/Style";
 import { BigGroupModal } from "../../components/LocationModal/Style";
 import { Title } from "../../components/Title/Style";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 import {
   ContentName,
@@ -11,7 +12,15 @@ import {
   ProfilePicture,
   TextProfileInput,
 } from "../Profile/Style";
-import { FileVisualize } from "./Style";
+import {
+  ButtonTextVisualize,
+  ContentSend,
+  FileVisualize,
+  TextSend,
+  ViewPhotoSend,
+} from "./Style";
+import { ButtonSecundaryTitle } from "../../components/Button/Style";
+import { ButtonText } from "../../components/AppointmentCard/Style";
 
 export const VisualizePrescription = () => {
   return (
@@ -52,6 +61,17 @@ export const VisualizePrescription = () => {
             <Title>No photo informed</Title>
           </FileVisualize>
         </ContentProfile>
+        <ContentSend>
+          <ViewPhotoSend>
+            <MaterialIcons name="add-a-photo" size={24} color="white" />
+            <TextSend>Send</TextSend>
+          </ViewPhotoSend>
+          <ButtonTextVisualize>Cancel</ButtonTextVisualize>
+        </ContentSend>
+        <ContentProfile>
+          <InputRecord placeholder={"Blood test result: all normal"} />
+        </ContentProfile>
+        <ButtonSecundaryTitle>Back</ButtonSecundaryTitle>
       </Container>
     </ScrollContainer>
   );

@@ -1,7 +1,7 @@
-import {
-  ContainerCardList,
-  TextBold,
-} from "../AppointmentCard/Style";
+// ClinicCard.js
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { ContainerCardList, TextBold } from "../AppointmentCard/Style";
 import {
   ContentInformationCard,
   ContentNameClinicCard,
@@ -14,10 +14,10 @@ import {
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export const ClinicCard = ({ name, address }) => {
+export const ClinicCard = ({ name, address, selected, onPress }) => {
   return (
-    <>
-      <ContainerCardList>
+    <TouchableOpacity onPress={onPress}>
+      <ContainerCardList style={{ borderColor: selected ? "#496BBA" : "transparent", borderWidth: 2 }}>
         <ContentNameClinicCard>
           <TitleCard>{name}</TitleCard>
           <TextBold>{address}</TextBold>
@@ -38,6 +38,6 @@ export const ClinicCard = ({ name, address }) => {
           </ContentTime>
         </ContentInformationCard>
       </ContainerCardList>
-    </>
+    </TouchableOpacity>
   );
 };

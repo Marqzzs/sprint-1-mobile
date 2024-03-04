@@ -46,7 +46,12 @@ export const FullCalendar = ({
       style={styles.calendar}
       theme={{
         dotColor: "#5F5C6B",
-        calendarBackground: "#FBFBFB",
+        calendarBackground: "#FFFFFF",
+        textDayFontFamily: "MontserratAlternates_600SemiBold",
+        textMonthFontSize: 24,
+        textDayHeaderFontFamily: "Quicksand_600SemiBold",
+        textMonthFontFamily: "MontserratAlternates_600SemiBold",
+        todayButtonFontFamily: "MontserratAlternates_600SemiBold",
       }}
       dayComponent={({ date, state }) => (
         <TouchableOpacity
@@ -71,7 +76,7 @@ export const FullCalendar = ({
 };
 
 const styles = StyleSheet.create({
-    calendar: {
-        width: 400,
-    }
+  calendar: {
+    width: 400,
+  },
 });

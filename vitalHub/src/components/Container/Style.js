@@ -6,7 +6,7 @@ import {LinearGradient} from 'expo-linear-gradient'
 export const Container = styled.SafeAreaView`
 flex: 1;
 align-items: center;
-background-color: #FAFAFA;
+background-color: #FFFFFF;
 `
 export const ScrollContainer = styled.ScrollView`
   flex: 1;

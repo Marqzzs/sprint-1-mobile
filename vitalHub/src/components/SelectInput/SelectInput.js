@@ -24,7 +24,10 @@ export const SelectInput = ({
           renderDropdownIcon={() => (
             <AntDesign name="caretdown" size={24} color="#34898F" />
           )}
-          dropdownStyle={styles.dropdown} // Define o estilo do dropdown
+          dropdownIconPosition="right"
+          rowTextStyle={styles.rowText}
+          dropdownOverlayColor="transparent"
+          dropdownStyle={styles.dropdown}
         />
       </ContentProfile>
     </SelectInputView>
@@ -44,12 +47,23 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: "#34898F",
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: "MontserratAlternates_600SemiBold",
     textAlign: "left",
   },
-  // dropdown: {
-  //   marginTop: -38,
-  //   borderCurve: 5,
-  // },
+  dropdown: {
+    backgroundColor: "#FBFBFB",
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
+    borderWidth: 2,
+    borderColor: "#60BFC5",
+    marginTop: -30,
+    borderTopWidth: 2,
+    borderBottomWidth: 0,
+  },
+  rowText: {
+    fontFamily: "MontserratAlternates_600SemiBold",
+    fontSize: 16,
+    color: "#34898F",
+  },
 });
