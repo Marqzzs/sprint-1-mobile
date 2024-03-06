@@ -39,6 +39,7 @@ import { SelectDoctor } from "./src/screens/SelectDoctor/SelectDoctor";
 import { SelectDate } from "./src/screens/SelectDate/SelectDate";
 import { LocationAppointment } from "./src/screens/LocationAppointment/LocationAppointment";
 import { VisualizePrescription } from "./src/screens/VisualizePrescription/VisualizePrescription";
+import { Main } from "./src/screens/Main/Main";
 
 export default function App() {
   const [fontsLoaded, fontsError] = useFonts({
@@ -59,15 +60,7 @@ export default function App() {
     <NavigationContainer>
       <StatusBar />
       {/* Navigation component */}
-      <Stack.Navigator>
-        <Stack.Screen
-          //Screen name
-          name="Navigation"
-          //component that will be called
-          component={Navigation}
-          //screen title
-          options={{ title: "Navigation", headerShown: false }}
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen
           //Screen name
           name="Login"
@@ -76,6 +69,24 @@ export default function App() {
           //screen title
           options={{ title: "Login", headerShown: false }}
         />
+        <Stack.Screen
+          //screen name
+          name="Main"
+          //component that will be called
+          component={Main}
+          //screen title
+          options={{
+            title: "Main",
+          }}
+        />
+        {/* <Stack.Screen
+          //Screen name
+          name="Navigation"
+          //component that will be called
+          component={Navigation}
+          //screen title
+          options={{ title: "Navigation", headerShown: false }}
+        /> */}
         <Stack.Screen
           //Screen name
           name="RecoverPassword"
