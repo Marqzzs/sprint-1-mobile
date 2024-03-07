@@ -23,7 +23,7 @@ const Consultas = [
 	{ id: 6, nome: 'Carlos', situacao: 'cancelada' },
 ];
 
-export const Home = ({ userType = 'doctor' }) => {
+export const Home = ({ userType = 'patient', navigation }) => {
 	const [statusLista, setStatusLista] = useState('pendente');
 	const [showModalCancel, setShowModalCancel] = useState(false);
 	const [showModalAppointment, setShowModalAppointment] = useState(false);
@@ -34,7 +34,7 @@ export const Home = ({ userType = 'doctor' }) => {
 	return (
 		<Container>
 			{/* Header */}
-			<Header />
+			<Header navigation={navigation} />
 			{/* Renderização condicional com base no userType */}
 			{userType === 'doctor' && (
 				<>
@@ -77,10 +77,13 @@ export const Home = ({ userType = 'doctor' }) => {
 						}
 					/>
 					<CancellationModal
+						navigation={navigation}
 						visible={showModalCancel}
 						setShowModalCancel={setShowModalCancel}
 					/>
 					<AppointmentModal
+						situacao={statusLista}
+						navigation={navigation}
 						visible={showModalAppointment}
 						setShowModalAppointment={setShowModalAppointment}
 					/>
@@ -113,10 +116,11 @@ export const Home = ({ userType = 'doctor' }) => {
 							statusLista === item.situacao && (
 								<TouchableOpacity
 									onPress={() =>
-										setShowModalLocationAppointment(true)
-									}
+										setShowModalAppointment(true)
+									} // Corrigido para setShowModalAppointment
 								>
 									<AppointmentCard
+										navigation={navigation}
 										situacao={item.situacao}
 										onPressAppointment={() =>
 											setShowModalAppointment(true)
@@ -130,6 +134,7 @@ export const Home = ({ userType = 'doctor' }) => {
 						}
 					/>
 					<CancellationModal
+						navigation={navigation}
 						visible={showModalCancel}
 						setShowModalCancel={setShowModalCancel}
 					/>
