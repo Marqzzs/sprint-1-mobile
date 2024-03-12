@@ -64,15 +64,17 @@ export const Home = ({ userType = 'patient', navigation }) => {
 						key={(item) => item.id}
 						renderItem={({ item }) =>
 							statusLista === item.situacao && (
-								<AppointmentCard
-									situacao={item.situacao}
-									onPressAppointment={() =>
-										setShowModalAppointment(true)
-									}
-									onPressCancel={() =>
-										setShowModalCancel(true)
-									}
-								/>
+								<TouchableOpacity>
+									<AppointmentCard
+										situacao={item.situacao}
+										onPressAppointment={() =>
+											setShowModalAppointment(true)
+										}
+										onPressCancel={() =>
+											setShowModalCancel(true)
+										}
+									/>
+								</TouchableOpacity>
 							)
 						}
 					/>
@@ -143,6 +145,7 @@ export const Home = ({ userType = 'patient', navigation }) => {
 						setShowModalAppointment={setShowModalAppointment}
 					/>
 					<ScheduleModal
+						navigation={navigation}
 						visible={showModalSchedule}
 						setShowModalSchedule={setShowModalSchedule}
 					/>

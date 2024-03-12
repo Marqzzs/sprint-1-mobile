@@ -8,6 +8,7 @@ import {
 	SpaceView,
 } from '../../components/ConfirmModal/Style';
 import { Container } from '../../components/Container/Style';
+import { Map } from '../../components/Maps/Maps';
 import { Title } from '../../components/Title/Style';
 import {
 	ContentProfile,
@@ -22,11 +23,9 @@ import { ImageLocation } from './Style';
 export const LocationAppointment = ({ navigation }) => {
 	return (
 		<Container>
-			<ImageLocation
-				source={{
-					uri: 'https://i.ibb.co/j5MWDXZ/data-Sz-Zn-Yp-GWJu-YSSz-Eerk-YM-Vn-C7-Iw3-Dxv-GEHhq-E1n-X9-HTbg-6uyq0zd-Cnt-Zo-SKONu6ymz-HDSVAlb-JE6.png',
-				}}
-			/>
+			<ImageLocation>
+				<Map />
+			</ImageLocation>
 
 			<SpaceView>
 				<Title>Clinic Nature</Title>
