@@ -136,7 +136,8 @@ export const Map = () => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1,
+		width: '100%',
+		height: 324,
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',

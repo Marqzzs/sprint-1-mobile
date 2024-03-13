@@ -48,9 +48,9 @@ export const AppointmentModal = ({
 
 					{situacao !== 'pendente' ? (
 						<ButtonModal
-							onPress={() => handleClose('MedicalRecords')}
+							onPress={() => handleClose('VisualizePrescription')}
 						>
-							<ButtonTitle>insert medical record</ButtonTitle>
+							<ButtonTitle>View medical record</ButtonTitle>
 						</ButtonModal>
 					) : (
 						<ButtonModal

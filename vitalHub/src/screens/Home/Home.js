@@ -66,6 +66,7 @@ export const Home = ({ userType = 'patient', navigation }) => {
 							statusLista === item.situacao && (
 								<TouchableOpacity>
 									<AppointmentCard
+										navigation={navigation}
 										situacao={item.situacao}
 										onPressAppointment={() =>
 											setShowModalAppointment(true)
@@ -141,9 +142,12 @@ export const Home = ({ userType = 'patient', navigation }) => {
 						setShowModalCancel={setShowModalCancel}
 					/>
 					<AppointmentModal
+						situacao={statusLista}
+						navigation={navigation}
 						visible={showModalAppointment}
 						setShowModalAppointment={setShowModalAppointment}
 					/>
+
 					<ScheduleModal
 						navigation={navigation}
 						visible={showModalSchedule}
