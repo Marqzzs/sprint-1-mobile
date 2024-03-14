@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+import { Title } from '../Title/Style';
 import {
 	StyleSheet,
 	Text,
@@ -9,17 +9,12 @@ import {
 	Alert,
 } from 'react-native';
 
-//importacao da camera do expo
 import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState, useRef } from 'react';
-
 import { FontAwesome } from '@expo/vector-icons';
-
 import * as MediaLibrary from 'expo-media-library';
 
-export default function App() {
-	/* */
-
+export const CameraPhoto = () => {
 	const cameraRef = useRef(null);
 	const [photo, setPhoto] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
@@ -31,13 +26,11 @@ export default function App() {
 			setPhoto(photo.uri);
 
 			setOpenModal(true);
-			console.log(photo);
 		}
 	}
 
 	function ClearPhoto() {
 		setPhoto(null);
-
 		setOpenModal(false);
 	}
 
@@ -45,22 +38,21 @@ export default function App() {
 		if (photo) {
 			await MediaLibrary.createAssetAsync(photo)
 				.then(() => {
-					Alert.alert('Sucesso', 'Foto salva na galeria');
+					alert('Sucesso', 'Foto Salva com sucesso');
 				})
 				.catch((error) => {
-					alert('Erro ao salvar foto');
+					alert('Erro ao salvar a foto');
 				});
 		}
 	}
 
 	useEffect(() => {
-		(async () => {
+		async () => {
 			const { status: cameraStatus } =
 				await Camera.requestCameraPermissionsAsync();
-
 			const { status: mediaStatus } =
 				await MediaLibrary.requestPermissionsAsync();
-		})();
+		};
 	}, []);
 
 	return (
@@ -84,14 +76,14 @@ export default function App() {
 					>
 						<Text style={styles.txtFlip}>Trocar</Text>
 					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.btnCaptura}
+						onPress={() => CapturePhoto()}
+					>
+						<FontAwesome name="camera" size={23} color={'#fff'} />
+					</TouchableOpacity>
 				</View>
 			</Camera>
-			<TouchableOpacity
-				style={styles.btnCaptura}
-				onPress={() => CapturePhoto()}
-			>
-				<FontAwesome name="camera" size={23} color={'#fff'} />
-			</TouchableOpacity>
 			<Modal
 				animationType="slide"
 				transparent={false}
@@ -135,7 +127,7 @@ export default function App() {
 			</Modal>
 		</View>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -171,7 +163,7 @@ const styles = StyleSheet.create({
 		margin: 20,
 		padding: 20,
 		borderRadius: 15,
-		backgroundColor: '#121212',
+		backgroundColor: 'gray',
 
 		alignItems: 'center',
 		justifyContent: 'center',

@@ -40,6 +40,7 @@ import { SelectDate } from './src/screens/SelectDate/SelectDate';
 import { LocationAppointment } from './src/screens/LocationAppointment/LocationAppointment';
 import { VisualizePrescription } from './src/screens/VisualizePrescription/VisualizePrescription';
 import { Main } from './src/screens/Main/Main';
+import { Camera, CameraPhoto } from './src/components/CameraPhoto/CameraPhoto';
 
 export default function App() {
 	const [fontsLoaded, fontsError] = useFonts({
@@ -186,6 +187,17 @@ export default function App() {
 					//screen title
 					options={{
 						title: 'VisualizePrescription',
+						headerShown: false,
+					}}
+				/>
+				<Stack.Screen
+					//Screen name
+					name="CameraPhoto"
+					//component that will be called
+					component={CameraPhoto}
+					//screen title
+					options={{
+						title: 'CameraPhoto',
 						headerShown: false,
 					}}
 				/>
