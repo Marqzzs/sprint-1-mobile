@@ -16,13 +16,26 @@ import {
 	ButtonTextVisualize,
 	ContentSend,
 	FileVisualize,
+	FileVisualizeImage,
 	TextSend,
 	ViewPhotoSend,
 } from './Style';
 import { ButtonSecundaryTitle } from '../../components/Button/Style';
 import { ButtonText } from '../../components/AppointmentCard/Style';
+import { useState } from 'react';
+import { TouchableOpacity } from 'react-native';
 
-export const VisualizePrescription = ({ navigation }) => {
+export const VisualizePrescription = ({ navigation, route }) => {
+	// Verificar se route.params está definido
+	const [photoUri, setPhotoUri] = useState(
+		route.params ? route.params.photoUri : null,
+	);
+
+	const cancelPreview = () => {
+		setPhotoUri(null);
+		// navigation.goBack();
+	};
+
 	return (
 		<ScrollContainer>
 			<Container>
@@ -51,19 +64,27 @@ export const VisualizePrescription = ({ navigation }) => {
 					<InputRecord placeholder={'Prescription here'} />
 				</ContentProfile>
 				<ContentProfile>
-					<FileVisualize>
-						<MaterialCommunityIcons
-							name="image-filter-center-focus-strong"
-							size={24}
-							color="black"
-						/>
+					{photoUri == null ? (
+						<>
+							<FileVisualize>
+								<MaterialCommunityIcons
+									name="image-filter-center-focus-strong"
+									size={24}
+									color="black"
+								/>
 
-						<Title>No photo informed</Title>
-					</FileVisualize>
+								<Title>No photo informed</Title>
+							</FileVisualize>
+						</>
+					) : (
+						<>
+							<FileVisualizeImage source={{ uri: photoUri }} />
+						</>
+					)}
 				</ContentProfile>
 				<ContentSend>
 					<ViewPhotoSend
-						onPress={() => navigation.navigate('CameraPhoto')}
+						onPress={() => navigation.navigate('CameraPhoto', {})}
 					>
 						<MaterialIcons
 							name="add-a-photo"
@@ -72,7 +93,9 @@ export const VisualizePrescription = ({ navigation }) => {
 						/>
 						<TextSend>Send</TextSend>
 					</ViewPhotoSend>
-					<ButtonTextVisualize>Cancel</ButtonTextVisualize>
+					<TouchableOpacity onPress={() => cancelPreview()}>
+						<ButtonTextVisualize>Cancel</ButtonTextVisualize>
+					</TouchableOpacity>
 				</ContentSend>
 				<ContentProfile>
 					<InputRecord
@@ -80,7 +103,7 @@ export const VisualizePrescription = ({ navigation }) => {
 					/>
 				</ContentProfile>
 				<ButtonSecundaryTitle
-					onPress={() => navigation.navigate('Home  ')}
+					onPress={() => navigation.navigate('Home')}
 				>
 					Back
 				</ButtonSecundaryTitle>

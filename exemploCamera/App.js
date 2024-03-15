@@ -13,7 +13,7 @@ import {
 import { Camera, CameraType } from 'expo-camera';
 import { useEffect, useState, useRef } from 'react';
 
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 
 import * as MediaLibrary from 'expo-media-library';
 

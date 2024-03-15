@@ -12,6 +12,17 @@ export const FileVisualize = styled.View`
 	gap: 5px;
 `;
 
+export const FileVisualizeImage = styled.Image`
+	width: 100%;
+	height: 111px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	/* background-color: #f5f3f3; */
+	border-radius: 5px;
+	/* gap: 5px; */
+`;
+
 export const ContentSend = styled.View`
 	width: 90%;
 	height: 63px;

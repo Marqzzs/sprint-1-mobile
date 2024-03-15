@@ -1,4 +1,5 @@
-import { Title } from '../Title/Style';
+// Importações necessárias
+import React, { useState, useEffect, useRef } from 'react';
 import {
 	StyleSheet,
 	Text,
@@ -8,53 +9,91 @@ import {
 	Image,
 	Alert,
 } from 'react-native';
-
-import { Camera, CameraType } from 'expo-camera';
-import { useEffect, useState, useRef } from 'react';
-import { FontAwesome } from '@expo/vector-icons';
+import { Camera } from 'expo-camera';
+import { FontAwesome, MaterialIcons, FontAwesome6 } from '@expo/vector-icons';
 import * as MediaLibrary from 'expo-media-library';
 
-export const CameraPhoto = () => {
+// Componente CameraPhoto
+export const CameraPhoto = ({ navigation, route }) => {
+	// Referência para a câmera
 	const cameraRef = useRef(null);
+
+	// Estado para armazenar a foto tirada
 	const [photo, setPhoto] = useState(null);
+
+	// Estado para controlar a abertura do modal
 	const [openModal, setOpenModal] = useState(false);
+
+	// Estado para definir o tipo da câmera (traseira ou frontal)
 	const [tipoCamera, setTipoCamera] = useState(Camera.Constants.Type.back);
 
+	// Estado para controlar o modo de flash (ligado ou desligado)
+	const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.off);
+
+	// Estado para controlar o foco automático (ligado ou desligado)
+	const [autoFocus, setAutoFocus] = useState(Camera.Constants.AutoFocus.off);
+
+	// Função para capturar a foto
 	async function CapturePhoto() {
+		// Ativar o foco automático antes de tirar a foto
+		setAutoFocus(Camera.Constants.AutoFocus.on);
+
+		// Esperar um curto período de tempo para permitir que o foco automático seja aplicado
+		await new Promise((resolve) => setTimeout(resolve, 1000));
+
+		// Tirar a foto após o foco automático ser aplicado
 		if (cameraRef) {
 			const photo = await cameraRef.current.takePictureAsync();
-			setPhoto(photo.uri);
-
+			await setPhoto(photo.uri);
 			setOpenModal(true);
 		}
 	}
 
+	async function SendPhoto() {
+		if (photo) {
+			navigation.navigate('VisualizePrescription', { photoUri: photo });
+		}
+	}
+
+	// Função para limpar a foto
 	function ClearPhoto() {
 		setPhoto(null);
 		setOpenModal(false);
 	}
 
+	// Função para alternar o modo de flash
+	function ToggleFlashMode() {
+		setFlashMode(
+			flashMode === Camera.Constants.FlashMode.on
+				? Camera.Constants.FlashMode.off
+				: Camera.Constants.FlashMode.on,
+		);
+	}
+
+	// Função para salvar a foto na galeria
 	async function SavePhoto() {
 		if (photo) {
 			await MediaLibrary.createAssetAsync(photo)
 				.then(() => {
-					alert('Sucesso', 'Foto Salva com sucesso');
+					Alert.alert('Sucesso', 'Foto salva na galeria');
 				})
 				.catch((error) => {
-					alert('Erro ao salvar a foto');
+					alert('Erro ao salvar foto');
 				});
 		}
 	}
 
+	// Solicitar permissões da câmera e da galeria ao montar o componente
 	useEffect(() => {
-		async () => {
+		(async () => {
 			const { status: cameraStatus } =
 				await Camera.requestCameraPermissionsAsync();
 			const { status: mediaStatus } =
 				await MediaLibrary.requestPermissionsAsync();
-		};
+		})();
 	}, []);
 
+	// Renderização do componente
 	return (
 		<View style={styles.container}>
 			<Camera
@@ -62,6 +101,8 @@ export const CameraPhoto = () => {
 				type={tipoCamera}
 				ratio={'16:9'}
 				ref={cameraRef}
+				flashMode={flashMode}
+				autoFocus={autoFocus}
 			>
 				<View style={styles.viewFlip}>
 					<TouchableOpacity
@@ -74,37 +115,57 @@ export const CameraPhoto = () => {
 							)
 						}
 					>
-						<Text style={styles.txtFlip}>Trocar</Text>
+						<FontAwesome6
+							name="camera-rotate"
+							size={36}
+							color="#fff"
+						/>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.btnCaptura}
-						onPress={() => CapturePhoto()}
+						onPress={CapturePhoto}
 					>
-						<FontAwesome name="camera" size={23} color={'#fff'} />
+						<FontAwesome name="camera" size={36} color="#fff" />
+					</TouchableOpacity>
+					<TouchableOpacity onPress={ToggleFlashMode}>
+						<MaterialIcons
+							style={[
+								styles.btnFlash,
+								flashMode === Camera.Constants.FlashMode.on
+									? styles.flashOn
+									: styles.flashOff,
+							]}
+							name={
+								flashMode === Camera.Constants.FlashMode.on
+									? 'flash-on'
+									: 'flash-off'
+							}
+							size={36}
+							color={
+								flashMode === Camera.Constants.FlashMode.on
+									? '#007bff'
+									: '#fff'
+							}
+						/>
 					</TouchableOpacity>
 				</View>
 			</Camera>
+
+			{/* Modal para exibir a foto */}
 			<Modal
 				animationType="slide"
 				transparent={false}
 				visible={openModal}
 			>
-				<View
-					style={{
-						flex: 1,
-						alignItems: 'center',
-						justifyContent: 'center',
-						padding: 30,
-					}}
-				>
+				<View style={styles.modalContainer}>
 					<Image
-						style={{ width: '100%', height: 500, borderRadius: 10 }}
+						style={styles.imagePreview}
 						source={{ uri: photo }}
 					/>
-					<View style={{ margin: 15, flexDirection: 'row' }}>
+					<View style={styles.buttonContainer}>
 						<TouchableOpacity
-							style={styles.btnCancel}
-							onPress={() => ClearPhoto()}
+							style={styles.button}
+							onPress={ClearPhoto}
 						>
 							<FontAwesome
 								name="trash"
@@ -113,8 +174,8 @@ export const CameraPhoto = () => {
 							/>
 						</TouchableOpacity>
 						<TouchableOpacity
-							style={styles.btnUpload}
-							onPress={() => SavePhoto()}
+							style={styles.button}
+							onPress={SendPhoto}
 						>
 							<FontAwesome
 								name="save"
@@ -129,6 +190,7 @@ export const CameraPhoto = () => {
 	);
 };
 
+// Estilos do componente
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -146,41 +208,55 @@ const styles = StyleSheet.create({
 		backgroundColor: 'transparent',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
-		justifyContent: 'center',
+		justifyContent: 'space-around',
+		width: '100%',
+		marginBottom: 15,
 	},
 	btnFlip: {
-		position: 'absolute',
-		bottom: 20,
-		left: 20,
-		padding: 15,
-	},
-	txtFlip: {
-		fontSize: 20,
-		color: '#fff',
-		marginBottom: 20,
+		padding: 20,
+		borderRadius: 15,
+		backgroundColor: '#121212',
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	btnCaptura: {
-		margin: 20,
 		padding: 20,
 		borderRadius: 15,
-		backgroundColor: 'gray',
-
+		backgroundColor: '#121212',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	btnCancel: {
+	btnFlash: {
 		padding: 20,
 		borderRadius: 15,
-		backgroundColor: 'transparent',
-
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	btnUpload: {
+	flashOn: {
+		backgroundColor: '#1212', // Cor de fundo quando o flash está ativado
+	},
+	flashOff: {
+		backgroundColor: '#121212', // Cor de fundo quando o flash está desativado
+	},
+	modalContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 30,
+	},
+	imagePreview: {
+		width: '100%',
+		height: 500,
+		borderRadius: 10,
+	},
+	buttonContainer: {
+		margin: 15,
+		flexDirection: 'row',
+	},
+	button: {
 		padding: 20,
 		borderRadius: 15,
 		backgroundColor: 'transparent',
-
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
