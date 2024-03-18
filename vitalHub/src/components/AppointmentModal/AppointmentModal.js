@@ -26,6 +26,7 @@ export const AppointmentModal = ({
 		await setShowModalAppointment(false);
 		navigation.replace(screen);
 	}
+
 	return (
 		<Modal
 			{...rest}
